@@ -7,8 +7,8 @@ import { JOIN_URL, HOW_TO_USE_URL, GOOGLE_PLAY_URL, APP_STORE_URL, CONTACT_EMAIL
 
 export default function Footer() {
   return (
-    <footer style={{ padding: "56px 44px", background: "#0050A2" }}>
-      <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr 1fr 1fr", gap: 44, maxWidth: 1440, margin: "0 auto" }}>
+    <footer style={{ padding: "clamp(40px, 5vw, 56px) clamp(18px, 4vw, 44px)", background: "#0050A2" }}>
+      <div className="grid-footer" style={{ display: "grid", gap: "clamp(28px, 3.5vw, 44px)", maxWidth: 1440, margin: "0 auto" }}>
         <div>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             <img src={logo} alt="Rotary Connect" style={{ height: 84, width: "auto", display: "block" }} />

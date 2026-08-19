@@ -13,12 +13,12 @@ const NAV_LINKS = [
 
 export default function Header() {
   return (
-    <header style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 18, flexWrap: "wrap", padding: "22px 44px" }}>
-      <Link to="/" style={{ display: "flex", alignItems: "center", marginLeft: 112 }}>
+    <header style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 18, flexWrap: "wrap", padding: "clamp(14px, 2.5vw, 22px) clamp(18px, 4vw, 44px)" }}>
+      <Link to="/" style={{ display: "flex", alignItems: "center", marginLeft: "clamp(0px, 7vw, 112px)" }}>
         <img
           src={logo}
           alt="Rotary Connect"
-          style={{ height: 108, width: "auto", display: "block" }}
+          style={{ height: "clamp(58px, 8.5vw, 108px)", width: "auto", display: "block" }}
         />
       </Link>
       <nav style={{ display: "flex", alignItems: "center", gap: 8, padding: "7px 10px", borderRadius: 999, background: "rgba(255,255,255,0.07)", fontSize: 14, fontWeight: 500, minWidth: 0, flexWrap: "wrap", justifyContent: "center" }}>

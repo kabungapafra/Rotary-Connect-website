@@ -6,3 +6,76 @@ a:hover { color:#C4830F; }
 input, textarea, select, button { font:inherit; color:inherit; }
 :focus-visible { outline:2px solid #F7A81B; outline-offset:2px; }
 input::placeholder { color:#8494A6; }
+
+/* ── Responsive foundations ────────────────────────────────────────────
+   Every style in this codebase is inline, and an inline style beats any
+   class selector. So the responsive work lives in the components as
+   clamp() and auto-fit grids, which need no breakpoint at all.
+
+   Only rules that genuinely require a breakpoint sit here — and the
+   properties they set are deliberately kept OUT of the inline styles, so
+   there is never a specificity fight between the two. */
+
+/* An image with an intrinsic width wider than its column is the usual
+   cause of a page that scrolls sideways on a phone. */
+img, svg, video { max-width: 100%; }
+
+/* The other usual cause is an unbreakable string. The contact email in the
+   footer is 214px wide and sat in a 175px column, which pushed every page
+   sideways at 414px. Breaking only happens when the word would otherwise
+   overflow, so normal text is unaffected — and this also covers the club
+   names and URLs that arrive from the API. */
+body { overflow-wrap: break-word; }
+
+/* The hero's two callouts are pinned over the phone artwork on wide
+   screens. Below that there is no artwork wide enough to pin them to, and
+   absolute positioning drops them on top of the headline — so they become
+   ordinary stacked cards instead. */
+.hero-badges { display: grid; gap: 12px; margin-top: 18px; }
+
+@media (min-width: 900px) {
+  .hero-badges { display: block; margin-top: 0; }
+  .hero-badge { position: absolute; }
+  .hero-badge--qr { left: -16px; bottom: 52px; }
+  .hero-badge--ai { right: 18px; bottom: -26px; }
+}
+
+/* Cards in a wrapping row: the divider belongs between them, not after
+   the last one on a line. Hidden below the breakpoint where they stack. */
+@media (max-width: 767px) {
+  .service-card { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.09); }
+  .service-card:last-child { border-bottom: none; }
+}
+
+/* Once the hero is a single column the artwork would otherwise run the
+   full width of a tablet and push the page below the fold. */
+@media (max-width: 899px) {
+  .hero-figure { width: 100%; max-width: 460px; margin-inline: auto; }
+}
+
+/* ── Asymmetric two-column layouts ────────────────────────────────────
+   These sections are deliberately lopsided on desktop (a narrow column
+   beside a wide one). An auto-fit grid cannot express that — it makes
+   every track equal — so the ratio lives here, behind a breakpoint, and
+   the inline styles no longer set grid-template-columns at all. Below the
+   breakpoint each one is a single column. */
+.grid-services,
+.grid-howitworks,
+.grid-projects-head,
+.grid-events,
+.grid-footer,
+.grid-form { grid-template-columns: 1fr; }
+
+@media (min-width: 900px) {
+  .grid-services      { grid-template-columns: 0.72fr 2fr; }
+  .grid-howitworks    { grid-template-columns: 1.2fr 0.8fr; }
+  .grid-projects-head { grid-template-columns: 1.3fr 0.7fr; }
+  .grid-events        { grid-template-columns: 0.7fr 1.3fr; }
+  .grid-footer        { grid-template-columns: 1.4fr 1fr 1fr 1fr; }
+}
+
+/* The request form keeps its sidebar later than the rest: below this the
+   form fields themselves get too narrow to fill in comfortably. */
+@media (min-width: 1000px) {
+  .grid-form { grid-template-columns: 1.6fr 1fr; }
+}

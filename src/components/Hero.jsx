@@ -8,18 +8,18 @@ import { QRIcon, AIIcon } from "./icons";
 
 export default function Hero() {
   return (
-    <section style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48, alignItems: "center", padding: "56px 44px 0", maxWidth: 1440, margin: "0 auto" }}>
+    <section style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 420px), 1fr))", gap: "clamp(28px, 4vw, 48px)", alignItems: "center", padding: "clamp(32px, 5vw, 56px) clamp(18px, 4vw, 44px) 0", maxWidth: 1440, margin: "0 auto" }}>
       <div>
         <div style={{ display: "inline-block", padding: "8px 16px", borderRadius: 999, background: "rgba(247,168,27,0.14)", color: "#F7A81B", fontSize: 13, fontWeight: 600 }}>
           Welcome to Rotary Connect
         </div>
-        <h1 style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: 62, fontWeight: 800, lineHeight: 1.06, letterSpacing: "-0.035em", color: "#ffffff", margin: "22px 0 0", maxWidth: "17ch", textWrap: "pretty" }}>
+        <h1 style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: "clamp(34px, 7vw, 62px)", fontWeight: 800, lineHeight: 1.06, letterSpacing: "-0.035em", color: "#ffffff", margin: "22px 0 0", maxWidth: "17ch", textWrap: "pretty" }}>
           Run Your Club From Your Phone
         </h1>
         <p style={{ fontSize: 17, lineHeight: 1.7, color: "#B9CCE8", maxWidth: "48ch", margin: "20px 0 0" }}>
           Attendance, events, dues, minutes and members — one app your whole club actually uses. Check in by scanning a QR code at the door.
         </p>
-        <div style={{ display: "flex", alignItems: "center", gap: 14, marginTop: 32 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 14, marginTop: 32, flexWrap: "wrap" }}>
           <Hoverable
             as={Link}
             to={JOIN_URL}
@@ -53,29 +53,31 @@ export default function Hero() {
         </div>
       </div>
 
-      <div style={{ position: "relative" }}>
+      <div className="hero-figure" style={{ position: "relative" }}>
         <img
           src={heroAppScreens}
           alt="Rotary Connect app — club home screen and QR meeting check-in"
           style={{ width: "100%", height: "auto", display: "block" }}
         />
-        <div style={{ position: "absolute", left: -16, bottom: 52, background: "#ffffff", borderRadius: 18, padding: "18px 22px", boxShadow: "0 20px 40px -22px rgba(0,0,0,0.5)" }}>
+        <div className="hero-badges">
+        <div className="hero-badge hero-badge--qr" style={{ background: "#ffffff", borderRadius: 18, padding: "clamp(14px, 2vw, 18px) clamp(16px, 2.4vw, 22px)", boxShadow: "0 20px 40px -22px rgba(0,0,0,0.5)" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
             <span style={{ width: 26, height: 26, borderRadius: 999, background: "#F7A81B", color: "#101820", display: "flex", alignItems: "center", justifyContent: "center", flex: "none" }}>
               <QRIcon size={15} />
             </span>
-            <div style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: 22, fontWeight: 800, letterSpacing: "-0.03em" }}>QR check-in</div>
+            <div style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: "clamp(17px, 2.4vw, 22px)", fontWeight: 800, letterSpacing: "-0.03em" }}>QR check-in</div>
           </div>
           <div style={{ fontSize: 12.5, color: "#4A5A6B", marginTop: 2 }}>Recorded before they sit down</div>
         </div>
-        <div style={{ position: "absolute", right: 18, bottom: -26, background: "#F7A81B", borderRadius: 18, padding: "18px 24px" }}>
+        <div className="hero-badge hero-badge--ai" style={{ background: "#F7A81B", borderRadius: 18, padding: "clamp(14px, 2vw, 18px) clamp(16px, 2.6vw, 24px)" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
             <span style={{ width: 26, height: 26, borderRadius: 999, background: "#17458F", color: "#F7A81B", display: "flex", alignItems: "center", justifyContent: "center", flex: "none" }}>
               <AIIcon size={15} />
             </span>
-            <div style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: 22, fontWeight: 800, letterSpacing: "-0.03em", color: "#101820" }}>AI minutes</div>
+            <div style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: "clamp(17px, 2.4vw, 22px)", fontWeight: 800, letterSpacing: "-0.03em", color: "#101820" }}>AI minutes</div>
           </div>
           <div style={{ fontSize: 12.5, color: "#4A3200", marginTop: 2 }}>Drafted right after the meeting</div>
+        </div>
         </div>
       </div>
     </section>

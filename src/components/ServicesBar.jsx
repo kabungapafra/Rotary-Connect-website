@@ -5,7 +5,7 @@ import howDoesItWork from "../assets/how-does-it-work.jpeg";
 
 export default function ServicesBar() {
   return (
-    <section style={{ display: "grid", gridTemplateColumns: "0.72fr 2fr", gap: 18, padding: "0 44px", maxWidth: 1440, margin: "-56px auto 0", position: "relative", zIndex: 2, alignItems: "end" }}>
+    <section className="grid-services" style={{ display: "grid", gap: 18, padding: "0 clamp(18px, 4vw, 44px)", maxWidth: 1440, margin: "clamp(-56px, -4vw, -24px) auto 0", position: "relative", zIndex: 2, alignItems: "end" }}>
       <div
         style={{
           borderRadius: 20,
@@ -31,11 +31,11 @@ export default function ServicesBar() {
           </span>
         </Link>
       </div>
-      <div style={{ borderRadius: 20, background: "#0050A2", display: "grid", gridTemplateColumns: "repeat(3,1fr)" }}>
+      <div style={{ borderRadius: 20, background: "#0050A2", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 210px), 1fr))" }}>
         {SERVICES.map((s) => {
           const Icon = SERVICE_ICONS[s.tag];
           return (
-            <div key={s.tag} style={{ padding: 30, borderRight: "1px solid rgba(255,255,255,0.09)" }}>
+            <div key={s.tag} className="service-card" style={{ padding: "clamp(20px, 3vw, 30px)", borderRight: "1px solid rgba(255,255,255,0.09)" }}>
               <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
                 <div style={{ width: 44, height: 44, borderRadius: 999, background: "#F7A81B", color: "#101820", display: "flex", alignItems: "center", justifyContent: "center", flex: "none" }}>
                   <Icon />

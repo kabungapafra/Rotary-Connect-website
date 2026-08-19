@@ -211,11 +211,11 @@ export default function RequestToJoin() {
     <div style={{ background: "#F2F5F9" }}>
       <div style={{ background: "#17458F", padding: "0 0 56px" }}>
         <Header />
-        <section style={{ padding: "40px 44px 0", maxWidth: 1180, margin: "0 auto" }}>
+        <section style={{ padding: "40px clamp(18px, 4vw, 44px) 0", maxWidth: 1180, margin: "0 auto" }}>
           <div style={{ display: "inline-block", padding: "8px 16px", borderRadius: 999, background: "rgba(247,168,27,0.14)", color: "#F7A81B", fontSize: 13, fontWeight: 600 }}>
             Membership request
           </div>
-          <h1 style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: 46, fontWeight: 800, lineHeight: 1.08, letterSpacing: "-0.035em", color: "#ffffff", margin: "20px 0 0", maxWidth: "18ch" }}>
+          <h1 style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: "clamp(32px, 6vw, 46px)", fontWeight: 800, lineHeight: 1.08, letterSpacing: "-0.035em", color: "#ffffff", margin: "20px 0 0", maxWidth: "18ch" }}>
             Put Your Club On The Map
           </h1>
           <p style={{ fontSize: 16, lineHeight: 1.7, color: "#B9CCE8", maxWidth: "56ch", margin: "16px 0 0" }}>
@@ -224,10 +224,10 @@ export default function RequestToJoin() {
         </section>
       </div>
 
-      <section style={{ padding: "0 44px 88px", marginTop: -32 }}>
+      <section style={{ padding: "0 clamp(18px, 4vw, 44px) 88px", marginTop: -32 }}>
         <div style={{ maxWidth: 1180, margin: "0 auto" }}>
           {submitted ? (
-            <div style={{ maxWidth: 640, margin: "0 auto", borderRadius: 22, background: "#ffffff", padding: 48, textAlign: "center" }}>
+            <div style={{ maxWidth: 640, margin: "0 auto", borderRadius: 22, background: "#ffffff", padding: "clamp(28px, 5vw, 48px)", textAlign: "center" }}>
               <div style={{ width: 56, height: 56, borderRadius: 999, background: "#F7A81B", color: "#101820", fontSize: 24, fontWeight: 800, display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto" }}>
                 ✓
               </div>
@@ -248,8 +248,8 @@ export default function RequestToJoin() {
               </Hoverable>
             </div>
           ) : (
-            <div style={{ display: "grid", gridTemplateColumns: "1.6fr 1fr", gap: 24, alignItems: "start" }}>
-              <form onSubmit={handleSubmit} style={{ borderRadius: 22, background: "#ffffff", padding: 44 }}>
+            <div className="grid-form" style={{ display: "grid", gap: 24, alignItems: "start" }}>
+              <form onSubmit={handleSubmit} style={{ borderRadius: 22, background: "#ffffff", padding: "clamp(22px, 4vw, 44px)" }}>
               {/* Section 1 — About the club */}
               <h2 style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: 24, fontWeight: 800, letterSpacing: "-0.025em", margin: 0 }}>
                 About the club
@@ -258,7 +258,7 @@ export default function RequestToJoin() {
                 Open to Rotary clubs and Rotaract clubs today.
               </p>
 
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 22, marginTop: 28 }}>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 215px), 1fr))", gap: 22, marginTop: 28 }}>
                 <Field label="Club name">
                   <input required value={form.clubName} onChange={update("clubName")} placeholder="e.g. Rotary Club of Mbalwa" style={inputStyle} />
                 </Field>
@@ -296,7 +296,7 @@ export default function RequestToJoin() {
                 This becomes the Club President account — the first login created at onboarding, and the only one who can add everyone else. Get it right or the club can't start.
               </p>
 
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 22, marginTop: 28 }}>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 215px), 1fr))", gap: 22, marginTop: 28 }}>
                 <Field label="Full name">
                   <input required value={form.presidentName} onChange={update("presidentName")} placeholder="Full name" style={inputStyle} />
                 </Field>
@@ -333,7 +333,7 @@ export default function RequestToJoin() {
                 Context
               </h2>
 
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 22, marginTop: 28 }}>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 215px), 1fr))", gap: 22, marginTop: 28 }}>
                 <Field label="How did you hear about Rotary Connect?">
                   <select value={form.heardAbout} onChange={update("heardAbout")} style={inputStyle}>
                     <option value="">Select one</option>

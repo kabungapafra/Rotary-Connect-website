@@ -4,9 +4,9 @@ import { STEPS, ELIGIBLE, JOIN_URL } from "../data/siteData";
 
 export default function HowItWorks() {
   return (
-    <section id="how" style={{ padding: "76px 44px", background: "#ffffff" }}>
+    <section id="how" style={{ padding: "clamp(48px, 6vw, 76px) clamp(18px, 4vw, 44px)", background: "#ffffff" }}>
       <div style={{ maxWidth: 1440, margin: "0 auto" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1.2fr 0.8fr", gap: 56, alignItems: "end" }}>
+        <div className="grid-howitworks" style={{ display: "grid", gap: "clamp(24px, 4vw, 56px)", alignItems: "end" }}>
           <div>
             <div style={{ display: "inline-block", padding: "8px 16px", borderRadius: 999, background: "#FDF1D8", color: "#7A5200", fontSize: 13, fontWeight: 600 }}>
               Membership
@@ -32,7 +32,7 @@ export default function HowItWorks() {
             </Hoverable>
           </div>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 18, marginTop: 40 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 205px), 1fr))", gap: 18, marginTop: 40 }}>
           {STEPS.map((s) => (
             <div key={s.n} style={{ borderRadius: 20, background: "#F2F5F9", padding: 28 }}>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>

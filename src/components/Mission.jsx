@@ -5,8 +5,8 @@ import presidentApp from "../assets/president-app.png";
 
 export default function Mission() {
   return (
-    <section id="mission" style={{ padding: "88px 44px 72px", maxWidth: 1440, margin: "0 auto" }}>
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 56, alignItems: "start" }}>
+    <section id="mission" style={{ padding: "clamp(52px, 7vw, 88px) clamp(18px, 4vw, 44px) clamp(44px, 6vw, 72px)", maxWidth: 1440, margin: "0 auto" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 320px), 1fr))", gap: "clamp(28px, 4vw, 56px)", alignItems: "start" }}>
         <div style={{ borderRadius: 22, aspectRatio: "4/3", display: "flex", alignItems: "center", justifyContent: "center" }}>
           <img
             src={presidentApp}
@@ -21,7 +21,7 @@ export default function Mission() {
           <h2 style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: 42, fontWeight: 800, lineHeight: 1.1, letterSpacing: "-0.035em", margin: "18px 0 0", maxWidth: "18ch" }}>
             How Your Club Uses It
           </h2>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 26, marginTop: 28 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 190px), 1fr))", gap: 26, marginTop: 28 }}>
             {PILLARS.map((p) => (
               <div key={p.n}>
                 <div style={{ width: 40, height: 40, borderRadius: 999, background: "#F7A81B", color: "#101820", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Plus Jakarta Sans',sans-serif", fontWeight: 800, fontSize: 13 }}>

@@ -4,9 +4,9 @@ export default function Projects() {
   const projects = useProjects();
   if (projects === null || projects.length === 0) return null;
   return (
-    <section id="projects" style={{ padding: "80px 44px", background: "#ffffff" }}>
+    <section id="projects" style={{ padding: "clamp(52px, 7vw, 80px) clamp(18px, 4vw, 44px)", background: "#ffffff" }}>
       <div style={{ maxWidth: 1440, margin: "0 auto" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1.3fr 0.7fr", gap: 56, alignItems: "end" }}>
+        <div className="grid-projects-head" style={{ display: "grid", gap: "clamp(24px, 4vw, 56px)", alignItems: "end" }}>
           <div>
             <div style={{ display: "inline-block", padding: "8px 16px", borderRadius: 999, background: "#FDF1D8", color: "#7A5200", fontSize: 13, fontWeight: 600 }}>
               Service projects
@@ -19,7 +19,7 @@ export default function Projects() {
             Scope, progress, deadlines and photos — updated by each club as the work happens.
           </p>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20, marginTop: 40 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))", gap: 20, marginTop: 40 }}>
           {projects.map((p) => (
             <div key={p.title} style={{ borderRadius: 22, overflow: "hidden", background: "#F2F5F9", display: "flex", flexDirection: "column" }}>
               {/* The striped pattern is the fallback for a project with
