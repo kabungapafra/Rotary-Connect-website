@@ -1,0 +1,5 @@
+# React Router owns the routing, but Pages serves static files first, so a
+# direct load of /request-to-join looks for a file that was never built and
+# 404s. Hand every unmatched path to index.html and let the router resolve
+# it. 200 (rewrite), not 302 — the URL must stay put.
+/*    /index.html   200
