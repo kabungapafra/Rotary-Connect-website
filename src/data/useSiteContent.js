@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { API_BASE, EVENTS, NEWS, PROJECTS } from "./siteData";
+import { API_BASE, EVENTS, NEWS } from "./siteData";
 
 const MONTHS = [
   "Jan",
@@ -96,5 +96,9 @@ const mapProject = (row) => {
 
 export const useEvents = () => useRemoteList("/site/events", mapEvent, EVENTS);
 export const useNews = () => useRemoteList("/site/news", mapNews, NEWS);
-export const useProjects = () =>
-  useRemoteList("/site/projects", mapProject, PROJECTS);
+// No fallback, unlike events and news: the Projects section presents real
+// service work by real clubs, and the hardcoded samples it used to ship
+// with are invented. Showing those during an API outage would put made-up
+// charity work on a public page as if these clubs had done it. An outage
+// hides the section instead.
+export const useProjects = () => useRemoteList("/site/projects", mapProject, []);

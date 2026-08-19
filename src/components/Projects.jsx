@@ -9,14 +9,14 @@ export default function Projects() {
         <div style={{ display: "grid", gridTemplateColumns: "1.3fr 0.7fr", gap: 56, alignItems: "end" }}>
           <div>
             <div style={{ display: "inline-block", padding: "8px 16px", borderRadius: 999, background: "#FDF1D8", color: "#7A5200", fontSize: 13, fontWeight: 600 }}>
-              In the app
+              Service projects
             </div>
             <h2 style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: 42, fontWeight: 800, lineHeight: 1.12, letterSpacing: "-0.035em", margin: "18px 0 0", maxWidth: "24ch" }}>
-              Track Your Club's Projects
+              Projects Across Our Clubs
             </h2>
           </div>
           <p style={{ fontSize: 15.5, lineHeight: 1.7, color: "#4A5A6B", margin: 0 }}>
-            Every project gets its own page — scope, progress, deadlines and photos, updated as the work happens. Here's what that looks like:
+            Scope, progress, deadlines and photos — updated by each club as the work happens.
           </p>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20, marginTop: 40 }}>

@@ -30,11 +30,6 @@ export const STEPS = [
 
 export const CLUB_TYPES = ["Rotary", "Rotaract"];
 
-export const PROJECTS = [
-  { tag: "WAT", area: "Water & sanitation", title: "Clean Water For 14 Schools", body: "Filtration units and maintenance training, logged school by school with photos as work is completed.", progress: "60% complete", deadline: "Due Dec 2026", photo: "borewell install" },
-  { tag: "EDU", area: "Basic education", title: "Reading Mentors Programme", body: "Weekly one-on-one reading sessions for primary students, tracked against a term-by-term plan.", progress: "35% complete", deadline: "Due Mar 2027", photo: "classroom session" },
-  { tag: "ENV", area: "Environment", title: "Coastal Cleanup Circuit", body: "Monthly cleanups across twelve local beaches, with attendance logged at each one.", progress: "80% complete", deadline: "Due Jun 2026", photo: "beach cleanup" },
-];
 
 export const EVENTS = [
   { mon: "Aug", day: "26", title: "Weekly club meeting", meta: "Every Tuesday · 7pm · QR check-in at the door", kind: "Weekly" },
