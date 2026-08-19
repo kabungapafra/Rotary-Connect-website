@@ -6,18 +6,13 @@ export default function Projects() {
   return (
     <section id="projects" style={{ padding: "clamp(52px, 7vw, 80px) clamp(18px, 4vw, 44px)", background: "#ffffff" }}>
       <div style={{ maxWidth: 1440, margin: "0 auto" }}>
-        <div className="grid-projects-head" style={{ display: "grid", gap: "clamp(24px, 4vw, 56px)", alignItems: "end" }}>
-          <div>
-            <div style={{ display: "inline-block", padding: "8px 16px", borderRadius: 999, background: "#FDF1D8", color: "#7A5200", fontSize: 13, fontWeight: 600 }}>
-              Service projects
-            </div>
-            <h2 style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: 42, fontWeight: 800, lineHeight: 1.12, letterSpacing: "-0.035em", margin: "18px 0 0", maxWidth: "24ch" }}>
-              Projects Across Our Clubs
-            </h2>
+        <div>
+          <div style={{ display: "inline-block", padding: "8px 16px", borderRadius: 999, background: "#FDF1D8", color: "#7A5200", fontSize: 13, fontWeight: 600 }}>
+            Service projects
           </div>
-          <p style={{ fontSize: 15.5, lineHeight: 1.7, color: "#4A5A6B", margin: 0 }}>
-            Scope, progress, deadlines and photos — updated by each club as the work happens.
-          </p>
+          <h2 style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: 42, fontWeight: 800, lineHeight: 1.12, letterSpacing: "-0.035em", margin: "18px 0 0", maxWidth: "24ch" }}>
+            Projects Across Our Clubs
+          </h2>
         </div>
         {/* auto-fill, not auto-fit: auto-fit collapses the empty tracks, so
             a single published project stretched to the full width of the

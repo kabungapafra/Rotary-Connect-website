@@ -61,7 +61,6 @@ body { overflow-wrap: break-word; }
    breakpoint each one is a single column. */
 .grid-services,
 .grid-howitworks,
-.grid-projects-head,
 .grid-events,
 .grid-footer,
 .grid-form { grid-template-columns: 1fr; }
@@ -69,7 +68,6 @@ body { overflow-wrap: break-word; }
 @media (min-width: 900px) {
   .grid-services      { grid-template-columns: 0.72fr 2fr; }
   .grid-howitworks    { grid-template-columns: 1.2fr 0.8fr; }
-  .grid-projects-head { grid-template-columns: 1.3fr 0.7fr; }
   .grid-events        { grid-template-columns: 0.7fr 1.3fr; }
   .grid-footer        { grid-template-columns: 1.4fr 1fr 1fr 1fr; }
 }
