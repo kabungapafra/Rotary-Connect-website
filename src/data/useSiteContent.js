@@ -90,6 +90,7 @@ const mapProject = (row) => {
     progress: `${row.progress_percent}% complete`,
     deadline: due ? `Due ${MONTHS[due.getMonth()]} ${due.getFullYear()}` : "",
     photo: row.photo_caption,
+    photoUrl: row.photo || null,
   };
 };
 

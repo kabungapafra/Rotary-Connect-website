@@ -22,10 +22,22 @@ export default function Projects() {
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20, marginTop: 40 }}>
           {projects.map((p) => (
             <div key={p.title} style={{ borderRadius: 22, overflow: "hidden", background: "#F2F5F9", display: "flex", flexDirection: "column" }}>
-              <div style={{ height: 200, background: "repeating-linear-gradient(135deg,#DCE3EC 0 12px,#CFD8E6 12px 24px)", display: "flex", alignItems: "flex-end", padding: 16 }}>
-                <span style={{ fontFamily: "ui-monospace,Menlo,monospace", fontSize: 11, color: "#101820", background: "#ffffff", padding: "6px 11px", borderRadius: 999 }}>
-                  {p.photo}
-                </span>
+              {/* The striped pattern is the fallback for a project with
+                  no uploaded photo — it was the only thing here before
+                  photos became admin-managed. */}
+              <div style={{ position: "relative", height: 200, background: "repeating-linear-gradient(135deg,#DCE3EC 0 12px,#CFD8E6 12px 24px)", display: "flex", alignItems: "flex-end", padding: 16 }}>
+                {p.photoUrl && (
+                  <img
+                    src={p.photoUrl}
+                    alt={p.photo || p.title}
+                    style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+                  />
+                )}
+                {p.photo && (
+                  <span style={{ position: "relative", fontFamily: "ui-monospace,Menlo,monospace", fontSize: 11, color: "#101820", background: "#ffffff", padding: "6px 11px", borderRadius: 999 }}>
+                    {p.photo}
+                  </span>
+                )}
               </div>
               <div style={{ padding: 26, display: "flex", flexDirection: "column", gap: 9, flex: 1 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
