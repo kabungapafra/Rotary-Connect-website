@@ -5,24 +5,6 @@ import Footer from "../components/Footer";
 import Hoverable from "../components/Hoverable";
 import { CLUB_TYPES, STEPS, GOOD_TO_KNOW, CONTACT_EMAIL, API_BASE } from "../data/siteData";
 
-const HEARD_ABOUT_OPTIONS = [
-  "Search engine",
-  "Social media",
-  "Word of mouth / referral",
-  "District or club event",
-  "Digiflect Tech team",
-  "Other",
-];
-
-const PROBLEM_OPTIONS = [
-  "Attendance tracking",
-  "Dues & treasury",
-  "Meeting minutes",
-  "Member records",
-  "Events",
-  "Club communication",
-];
-
 function normalizeUgandaPhone(raw) {
   let digits = String(raw || "").replace(/\D/g, "");
   if (digits.startsWith("0")) {
@@ -135,9 +117,6 @@ export default function RequestToJoin() {
     phone: "",
     email: "",
     dob: "",
-    heardAbout: "",
-    problems: [],
-    notes: "",
     consentAuthorized: false,
     consentContact: false,
   });
@@ -147,12 +126,6 @@ export default function RequestToJoin() {
   const [sendError, setSendError] = useState("");
 
   const update = (key) => (e) => setForm((f) => ({ ...f, [key]: e.target.value }));
-
-  const toggleProblem = (opt) =>
-    setForm((f) => ({
-      ...f,
-      problems: f.problems.includes(opt) ? f.problems.filter((p) => p !== opt) : [...f.problems, opt],
-    }));
 
   const phoneInvalid = form.phone !== "" && !isValidUgandaPhone(form.phone);
 
@@ -183,9 +156,6 @@ export default function RequestToJoin() {
           phone: form.phone,
           email: form.email,
           dob: form.dob,
-          heard_about: form.heardAbout,
-          problems: form.problems,
-          notes: form.notes,
         }),
       });
       if (!res.ok) {
@@ -325,36 +295,6 @@ export default function RequestToJoin() {
                 <Field label="Date of birth">
                   <input type="date" value={form.dob} onChange={update("dob")} style={inputStyle} />
                   <span style={helperStyle}>Optional — drives birthday wishes.</span>
-                </Field>
-              </div>
-
-              {/* Section 3 — Context */}
-              <h2 style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: 24, fontWeight: 800, letterSpacing: "-0.025em", margin: "40px 0 0" }}>
-                Context
-              </h2>
-
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 215px), 1fr))", gap: 22, marginTop: 28 }}>
-                <Field label="How did you hear about Rotary Connect?">
-                  <select value={form.heardAbout} onChange={update("heardAbout")} style={inputStyle}>
-                    <option value="">Select one</option>
-                    {HEARD_ABOUT_OPTIONS.map((o) => (
-                      <option key={o} value={o}>
-                        {o}
-                      </option>
-                    ))}
-                  </select>
-                </Field>
-                <Field label="What do you most want to solve?" span2>
-                  <PillToggle options={PROBLEM_OPTIONS} selected={form.problems} onToggle={toggleProblem} multi />
-                </Field>
-                <Field label="Anything else" span2>
-                  <textarea
-                    value={form.notes}
-                    onChange={update("notes")}
-                    placeholder="Anything that'll help us set you up."
-                    rows={5}
-                    style={{ ...inputStyle, borderRadius: 18, resize: "vertical", fontFamily: "inherit" }}
-                  />
                 </Field>
               </div>
 

@@ -27,15 +27,17 @@ img, svg, video { max-width: 100%; }
    names and URLs that arrive from the API. */
 body { overflow-wrap: break-word; }
 
-/* The hero's two callouts are pinned over the phone artwork on wide
-   screens. Below that there is no artwork wide enough to pin them to, and
-   absolute positioning drops them on top of the headline — so they become
-   ordinary stacked cards instead. */
-.hero-badges { display: grid; gap: 12px; margin-top: 18px; }
+/* The hero's two callouts stay pinned over the phone artwork at every
+   width. On small screens they are tucked to the figure's own edges
+   instead of overhanging it, which is what would otherwise push the page
+   sideways. */
+.hero-badges { display: block; }
+.hero-badge { position: absolute; max-width: 74%; }
+.hero-badge--qr { left: 0; bottom: 44px; }
+.hero-badge--ai { right: 0; bottom: -16px; }
 
 @media (min-width: 900px) {
-  .hero-badges { display: block; margin-top: 0; }
-  .hero-badge { position: absolute; }
+  .hero-badge { max-width: none; }
   .hero-badge--qr { left: -16px; bottom: 52px; }
   .hero-badge--ai { right: 18px; bottom: -26px; }
 }
@@ -50,7 +52,8 @@ body { overflow-wrap: break-word; }
 /* Once the hero is a single column the artwork would otherwise run the
    full width of a tablet and push the page below the fold. */
 @media (max-width: 899px) {
-  .hero-figure { width: 100%; max-width: 460px; margin-inline: auto; }
+  /* margin-bottom clears the AI callout, which hangs below the artwork. */
+  .hero-figure { width: 100%; max-width: 460px; margin-inline: auto; margin-bottom: 42px; }
 }
 
 /* ── Asymmetric two-column layouts ────────────────────────────────────
@@ -76,4 +79,45 @@ body { overflow-wrap: break-word; }
    form fields themselves get too narrow to fill in comfortably. */
 @media (min-width: 1000px) {
   .grid-form { grid-template-columns: 1.6fr 1fr; }
+}
+
+/* ── Header navigation ────────────────────────────────────────────────
+   The five links do not fit beside the logo and the CTA on a phone, and
+   letting them wrap pushed the button onto its own row. Below the
+   breakpoint they collapse behind a menu button and open as a panel.
+   `display` is owned here rather than inline, because an inline style
+   would beat these rules. */
+.site-header { display: flex; flex-wrap: wrap; position: relative; }
+.nav-links { display: flex; border-radius: 999px; }
+.nav-toggle { display: none; }
+.header-cta { display: inline-flex; }
+/* The CTA lives in the header on desktop and inside the menu on mobile;
+   one of the two is always hidden so it is never duplicated on screen. */
+.nav-cta { display: none; }
+
+@media (max-width: 899px) {
+  .nav-toggle { display: flex; order: 2; margin-left: auto; }
+  /* Logo, then menu button hard right — the conventional phone header.
+     The CTA moves into the panel; all three would not fit on one row at
+     360px even with the margins stripped. */
+  .header-cta { display: none; }
+  .nav-cta { display: inline-flex; }
+
+  .nav-links {
+    display: none;
+    order: 4;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+    margin-top: 12px;
+    padding: 10px;
+    border-radius: 18px;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a { padding: 12px 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-toggle span { transition: none !important; }
 }
