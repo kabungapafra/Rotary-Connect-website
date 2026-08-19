@@ -1,7 +1,10 @@
-import { EVENTS } from "../data/siteData";
+import { useEvents } from "../data/useSiteContent";
 
 export default function Events({ show = true }) {
-  if (!show) return null;
+  const events = useEvents();
+  // null = still loading, [] = admin published nothing. Either way there is
+  // no calendar worth showing.
+  if (!show || events === null || events.length === 0) return null;
   return (
     <section id="events" style={{ padding: "80px 44px" }}>
       <div style={{ display: "grid", gridTemplateColumns: "0.7fr 1.3fr", gap: 56, maxWidth: 1440, margin: "0 auto" }}>
@@ -17,7 +20,7 @@ export default function Events({ show = true }) {
           </p>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-          {EVENTS.map((ev) => (
+          {events.map((ev) => (
             <div key={ev.title} style={{ display: "grid", gridTemplateColumns: "74px 1fr auto", gap: 22, alignItems: "center", padding: "18px 22px", borderRadius: 18, background: "#ffffff" }}>
               <div style={{ textAlign: "center", borderRadius: 14, background: "#F2F5F9", padding: "9px 4px" }}>
                 <div style={{ fontFamily: "ui-monospace,Menlo,monospace", fontSize: 10.5, letterSpacing: "0.06em", textTransform: "uppercase", color: "#A8720F" }}>

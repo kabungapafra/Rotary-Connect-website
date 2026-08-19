@@ -123,3 +123,7 @@ export const APP_STORE_URL = "https://apps.apple.com/us/app/rotary-connect-club-
 
 export const CONTACT_EMAIL = "rotaryconnect@digiflecttech.dev";
 export const CONTACT_PHONES = ["+256 776 157477", "+256 757029368"];
+
+// Overridable at build time (VITE_API_BASE) so a preview deploy can point
+// at a staging API; the default is the live backend the app already uses.
+export const API_BASE = import.meta.env.VITE_API_BASE || "https://rotaryapi.digiflecttech.dev";

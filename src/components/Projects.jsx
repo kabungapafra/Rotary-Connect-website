@@ -1,6 +1,8 @@
-import { PROJECTS } from "../data/siteData";
+import { useProjects } from "../data/useSiteContent";
 
 export default function Projects() {
+  const projects = useProjects();
+  if (projects === null || projects.length === 0) return null;
   return (
     <section id="projects" style={{ padding: "80px 44px", background: "#ffffff" }}>
       <div style={{ maxWidth: 1440, margin: "0 auto" }}>
@@ -18,7 +20,7 @@ export default function Projects() {
           </p>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20, marginTop: 40 }}>
-          {PROJECTS.map((p) => (
+          {projects.map((p) => (
             <div key={p.title} style={{ borderRadius: 22, overflow: "hidden", background: "#F2F5F9", display: "flex", flexDirection: "column" }}>
               <div style={{ height: 200, background: "repeating-linear-gradient(135deg,#DCE3EC 0 12px,#CFD8E6 12px 24px)", display: "flex", alignItems: "flex-end", padding: 16 }}>
                 <span style={{ fontFamily: "ui-monospace,Menlo,monospace", fontSize: 11, color: "#101820", background: "#ffffff", padding: "6px 11px", borderRadius: 999 }}>

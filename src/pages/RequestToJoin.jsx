@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Hoverable from "../components/Hoverable";
-import { CLUB_TYPES, STEPS, GOOD_TO_KNOW, CONTACT_EMAIL } from "../data/siteData";
+import { CLUB_TYPES, STEPS, GOOD_TO_KNOW, CONTACT_EMAIL, API_BASE } from "../data/siteData";
 
 const HEARD_ABOUT_OPTIONS = [
   "Search engine",
@@ -35,6 +35,32 @@ function normalizeUgandaPhone(raw) {
 
 function isValidUgandaPhone(raw) {
   return /^256\d{9}$/.test(normalizeUgandaPhone(raw));
+}
+
+// Downscale to the same 512px box the admin dashboard's club wizard uses,
+// so an approved request's logo drops straight into onboarding. Also keeps
+// a phone-camera original from blowing the API's data-URL size cap.
+const LOGO_MAX_PX = 512;
+
+function readLogoAsDataUrl(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onerror = () => reject(new Error("Could not read that image"));
+    reader.onload = () => {
+      const img = new Image();
+      img.onerror = () => reject(new Error("That file isn't a readable image"));
+      img.onload = () => {
+        const scale = Math.min(1, LOGO_MAX_PX / Math.max(img.width, img.height));
+        const canvas = document.createElement("canvas");
+        canvas.width = Math.round(img.width * scale);
+        canvas.height = Math.round(img.height * scale);
+        canvas.getContext("2d").drawImage(img, 0, 0, canvas.width, canvas.height);
+        resolve(canvas.toDataURL("image/png"));
+      };
+      img.src = reader.result;
+    };
+    reader.readAsDataURL(file);
+  });
 }
 
 const inputStyle = {
@@ -117,6 +143,8 @@ export default function RequestToJoin() {
   });
   const [phoneTouched, setPhoneTouched] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState("");
 
   const update = (key) => (e) => setForm((f) => ({ ...f, [key]: e.target.value }));
 
@@ -128,14 +156,55 @@ export default function RequestToJoin() {
 
   const phoneInvalid = form.phone !== "" && !isValidUgandaPhone(form.phone);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!isValidUgandaPhone(form.phone)) {
       setPhoneTouched(true);
       return;
     }
-    setSubmitted(true);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    setSending(true);
+    setSendError("");
+    try {
+      const logo = form.logoFile ? await readLogoAsDataUrl(form.logoFile) : null;
+      const res = await fetch(`${API_BASE}/site/join-requests`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          club_name: form.clubName,
+          club_type: form.clubType,
+          district: form.district,
+          location: form.location,
+          // The date inputs submit "" when left blank; the API expects null.
+          charter_date: form.charterDate || null,
+          members_count: Number(form.members) || 0,
+          logo,
+          contact_name: form.presidentName,
+          contact_role: form.presidentRole,
+          phone: form.phone,
+          email: form.email,
+          dob: form.dob,
+          heard_about: form.heardAbout,
+          problems: form.problems,
+          notes: form.notes,
+        }),
+      });
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        throw new Error(body.detail || "We couldn't send your request. Please try again.");
+      }
+      setSubmitted(true);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } catch (err) {
+      // Never show the success screen on a failure — the club would walk
+      // away believing they'd applied when nothing reached the admin.
+      setSendError(
+        err.message === "Failed to fetch"
+          ? `We couldn't reach our servers. Please try again, or email ${CONTACT_EMAIL}.`
+          : err.message
+      );
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -316,15 +385,22 @@ export default function RequestToJoin() {
                 </label>
               </div>
 
+              {sendError && (
+                <div style={{ marginTop: 28, padding: "14px 18px", borderRadius: 14, background: "#FDECEA", color: "#B3261E", fontSize: 13.5, lineHeight: 1.6 }}>
+                  {sendError}
+                </div>
+              )}
+
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 20, marginTop: 36, flexWrap: "wrap" }}>
                 <span style={{ fontSize: 13, color: "#8494A6", maxWidth: "40ch" }}>
                   We'll verify your club details and get back to you on the number you gave.
                 </span>
                 <button
                   type="submit"
-                  style={{ padding: "15px 28px", borderRadius: 999, background: "#F7A81B", color: "#101820", fontWeight: 700, fontSize: 15, border: "none", cursor: "pointer", whiteSpace: "nowrap" }}
+                  disabled={sending}
+                  style={{ padding: "15px 28px", borderRadius: 999, background: "#F7A81B", color: "#101820", fontWeight: 700, fontSize: 15, border: "none", cursor: sending ? "not-allowed" : "pointer", whiteSpace: "nowrap", opacity: sending ? 0.6 : 1 }}
                 >
-                  Send request →
+                  {sending ? "Sending…" : "Send request →"}
                 </button>
               </div>
               </form>
