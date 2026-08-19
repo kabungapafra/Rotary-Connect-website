@@ -19,7 +19,11 @@ export default function Projects() {
             Scope, progress, deadlines and photos — updated by each club as the work happens.
           </p>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))", gap: 20, marginTop: 40 }}>
+        {/* auto-fill, not auto-fit: auto-fit collapses the empty tracks, so
+            a single published project stretched to the full width of the
+            row and its photo got cropped into a letterbox. auto-fill keeps
+            the tracks, so one card is still card-sized. */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 280px), 1fr))", gap: 20, marginTop: 40 }}>
           {projects.map((p) => (
             <div key={p.title} style={{ borderRadius: 22, overflow: "hidden", background: "#F2F5F9", display: "flex", flexDirection: "column" }}>
               {/* The striped pattern is the fallback for a project with
