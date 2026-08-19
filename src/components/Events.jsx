@@ -1,0 +1,45 @@
+import { EVENTS } from "../data/siteData";
+
+export default function Events({ show = true }) {
+  if (!show) return null;
+  return (
+    <section id="events" style={{ padding: "80px 44px" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "0.7fr 1.3fr", gap: 56, maxWidth: 1440, margin: "0 auto" }}>
+        <div>
+          <div style={{ display: "inline-block", padding: "8px 16px", borderRadius: 999, background: "#FDF1D8", color: "#7A5200", fontSize: 13, fontWeight: 600 }}>
+            Calendar
+          </div>
+          <h2 style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: 42, fontWeight: 800, lineHeight: 1.1, letterSpacing: "-0.035em", margin: "18px 0 0", maxWidth: "12ch" }}>
+            What's Coming Up
+          </h2>
+          <p style={{ fontSize: 15.5, lineHeight: 1.7, color: "#4A5A6B", margin: "18px 0 0", maxWidth: "34ch" }}>
+            Your club's own weekly and monthly events, each with a QR code you can print for check-in or registration.
+          </p>
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+          {EVENTS.map((ev) => (
+            <div key={ev.title} style={{ display: "grid", gridTemplateColumns: "74px 1fr auto", gap: 22, alignItems: "center", padding: "18px 22px", borderRadius: 18, background: "#ffffff" }}>
+              <div style={{ textAlign: "center", borderRadius: 14, background: "#F2F5F9", padding: "9px 4px" }}>
+                <div style={{ fontFamily: "ui-monospace,Menlo,monospace", fontSize: 10.5, letterSpacing: "0.06em", textTransform: "uppercase", color: "#A8720F" }}>
+                  {ev.mon}
+                </div>
+                <div style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: 22, fontWeight: 800, lineHeight: 1.1, fontVariantNumeric: "tabular-nums" }}>
+                  {ev.day}
+                </div>
+              </div>
+              <div>
+                <div style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: 17, fontWeight: 700, letterSpacing: "-0.02em" }}>
+                  {ev.title}
+                </div>
+                <div style={{ fontSize: 14, color: "#8494A6", marginTop: 4 }}>{ev.meta}</div>
+              </div>
+              <span style={{ fontSize: 12.5, fontWeight: 600, color: "#0050A2", background: "#FDF1D8", padding: "7px 14px", borderRadius: 999, whiteSpace: "nowrap" }}>
+                {ev.kind}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
