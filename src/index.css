@@ -121,3 +121,42 @@ body { overflow-wrap: break-word; }
 @media (prefers-reduced-motion: reduce) {
   .nav-toggle span { transition: none !important; }
 }
+
+/* ── Motion ───────────────────────────────────────────────────────────
+   Every hover on this site landed in a single frame and nothing moved on
+   scroll, which read as static rather than calm. These are deliberately
+   small: this is a Rotary site, not a product launch page.
+
+   Only transform, box-shadow and filter are animated here. The cards set
+   their own background inline, and an inline style beats any class. */
+
+.lift {
+  transition: transform .24s cubic-bezier(.2, .7, .3, 1), box-shadow .24s ease;
+}
+.lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 38px -22px rgba(16, 24, 32, .45);
+}
+/* Cards that are links get a pressed state so a tap feels acknowledged on
+   touch, where there is no hover at all. */
+.lift:active { transform: translateY(-1px); }
+
+/* Photos ease up slightly with their card rather than sitting still. */
+.lift .zoom { transition: transform .45s cubic-bezier(.2, .7, .3, 1); }
+.lift:hover .zoom { transform: scale(1.04); }
+
+/* Reveal on scroll.
+   The hidden state is gated behind `html.js`, which is only added once the
+   observer is running. If the script never runs — or throws — the content
+   is simply visible, instead of a permanently blank page. */
+.js .reveal { opacity: 0; transform: translateY(16px); }
+.js .reveal.in { opacity: 1; transform: none; }
+.js .reveal {
+  transition: opacity .5s ease, transform .5s cubic-bezier(.2, .7, .3, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lift, .lift .zoom, .js .reveal { transition: none; }
+  .lift:hover, .lift:active, .lift:hover .zoom { transform: none; }
+  .js .reveal { opacity: 1; transform: none; }
+}

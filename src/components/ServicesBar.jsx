@@ -5,7 +5,7 @@ import howDoesItWork from "../assets/how-does-it-work.jpeg";
 
 export default function ServicesBar() {
   return (
-    <section className="grid-services" style={{ display: "grid", gap: 18, padding: "0 clamp(18px, 4vw, 44px)", maxWidth: 1440, margin: "clamp(-56px, -4vw, -24px) auto 0", position: "relative", zIndex: 2, alignItems: "end" }}>
+    <section className="grid-services reveal" style={{ display: "grid", gap: 18, padding: "0 clamp(18px, 4vw, 44px)", maxWidth: 1440, margin: "clamp(-56px, -4vw, -24px) auto 0", position: "relative", zIndex: 2, alignItems: "end" }}>
       <div
         style={{
           borderRadius: 20,

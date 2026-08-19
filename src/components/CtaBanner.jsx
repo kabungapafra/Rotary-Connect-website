@@ -4,7 +4,7 @@ import { JOIN_URL } from "../data/siteData";
 
 export default function CtaBanner() {
   return (
-    <section style={{ padding: "clamp(44px, 6vw, 64px) clamp(18px, 4vw, 44px) 40px" }}>
+    <section className="reveal" style={{ padding: "clamp(44px, 6vw, 64px) clamp(18px, 4vw, 44px) 40px" }}>
       <div style={{ maxWidth: 1440, margin: "0 auto", borderRadius: 26, background: "#17458F", padding: 56, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 40, flexWrap: "wrap" }}>
         <div>
           <h2 style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: 38, fontWeight: 800, lineHeight: 1.1, letterSpacing: "-0.035em", color: "#ffffff", margin: 0, maxWidth: "20ch" }}>

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import useReveal from "../useReveal";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Hoverable from "../components/Hoverable";
@@ -104,6 +105,7 @@ function PillToggle({ options, selected, onToggle, multi }) {
 }
 
 export default function RequestToJoin() {
+  useReveal();
   const [form, setForm] = useState({
     clubName: "",
     clubType: "Rotary",

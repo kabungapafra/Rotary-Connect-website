@@ -4,7 +4,7 @@ import { STEPS, ELIGIBLE, JOIN_URL } from "../data/siteData";
 
 export default function HowItWorks() {
   return (
-    <section id="how" style={{ padding: "clamp(48px, 6vw, 76px) clamp(18px, 4vw, 44px)", background: "#ffffff" }}>
+    <section id="how" className="reveal" style={{ padding: "clamp(48px, 6vw, 76px) clamp(18px, 4vw, 44px)", background: "#ffffff" }}>
       <div style={{ maxWidth: 1440, margin: "0 auto" }}>
         <div className="grid-howitworks" style={{ display: "grid", gap: "clamp(24px, 4vw, 56px)", alignItems: "end" }}>
           <div>
@@ -34,7 +34,7 @@ export default function HowItWorks() {
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 205px), 1fr))", gap: 18, marginTop: 40 }}>
           {STEPS.map((s) => (
-            <div key={s.n} style={{ borderRadius: 20, background: "#F2F5F9", padding: 28 }}>
+            <div key={s.n} className="lift" style={{ borderRadius: 20, background: "#F2F5F9", padding: 28 }}>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                 <span style={{ width: 40, height: 40, borderRadius: 999, background: "#0050A2", color: "#F7A81B", fontFamily: "'Plus Jakarta Sans',sans-serif", fontWeight: 800, fontSize: 15, display: "flex", alignItems: "center", justifyContent: "center" }}>
                   {s.n}

@@ -4,7 +4,7 @@ export default function Projects() {
   const projects = useProjects();
   if (projects === null || projects.length === 0) return null;
   return (
-    <section id="projects" style={{ padding: "clamp(52px, 7vw, 80px) clamp(18px, 4vw, 44px)", background: "#ffffff" }}>
+    <section id="projects" className="reveal" style={{ padding: "clamp(52px, 7vw, 80px) clamp(18px, 4vw, 44px)", background: "#ffffff" }}>
       <div style={{ maxWidth: 1440, margin: "0 auto" }}>
         <div>
           <div style={{ display: "inline-block", padding: "8px 16px", borderRadius: 999, background: "#FDF1D8", color: "#7A5200", fontSize: 13, fontWeight: 600 }}>
@@ -20,7 +20,7 @@ export default function Projects() {
             the tracks, so one card is still card-sized. */}
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 280px), 1fr))", gap: 20, marginTop: 40 }}>
           {projects.map((p) => (
-            <div key={p.title} style={{ borderRadius: 22, overflow: "hidden", background: "#F2F5F9", display: "flex", flexDirection: "column" }}>
+            <div key={p.title} className="lift" style={{ borderRadius: 22, overflow: "hidden", background: "#F2F5F9", display: "flex", flexDirection: "column" }}>
               {/* The striped pattern is the fallback for a project with
                   no uploaded photo — it was the only thing here before
                   photos became admin-managed. */}
@@ -29,6 +29,7 @@ export default function Projects() {
                   <img
                     src={p.photoUrl}
                     alt={p.photo || p.title}
+                    className="zoom"
                     style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
                   />
                 )}

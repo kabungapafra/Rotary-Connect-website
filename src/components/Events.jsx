@@ -6,7 +6,7 @@ export default function Events({ show = true }) {
   // no calendar worth showing.
   if (!show || events === null || events.length === 0) return null;
   return (
-    <section id="events" style={{ padding: "clamp(52px, 7vw, 80px) clamp(18px, 4vw, 44px)" }}>
+    <section id="events" className="reveal" style={{ padding: "clamp(52px, 7vw, 80px) clamp(18px, 4vw, 44px)" }}>
       <div className="grid-events" style={{ display: "grid", gap: "clamp(28px, 4vw, 56px)", maxWidth: 1440, margin: "0 auto" }}>
         <div>
           <div style={{ display: "inline-block", padding: "8px 16px", borderRadius: 999, background: "#FDF1D8", color: "#7A5200", fontSize: 13, fontWeight: 600 }}>
@@ -21,7 +21,7 @@ export default function Events({ show = true }) {
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
           {events.map((ev) => (
-            <div key={ev.title} style={{ display: "grid", gridTemplateColumns: "60px minmax(0, 1fr) auto", gap: "clamp(12px, 2vw, 22px)", alignItems: "center", padding: "clamp(14px, 2vw, 18px) clamp(14px, 2vw, 22px)", borderRadius: 18, background: "#ffffff" }}>
+            <div key={ev.title} className="lift" style={{ display: "grid", gridTemplateColumns: "60px minmax(0, 1fr) auto", gap: "clamp(12px, 2vw, 22px)", alignItems: "center", padding: "clamp(14px, 2vw, 18px) clamp(14px, 2vw, 22px)", borderRadius: 18, background: "#ffffff" }}>
               <div style={{ textAlign: "center", borderRadius: 14, background: "#F2F5F9", padding: "9px 4px" }}>
                 <div style={{ fontFamily: "ui-monospace,Menlo,monospace", fontSize: 10.5, letterSpacing: "0.06em", textTransform: "uppercase", color: "#A8720F" }}>
                   {ev.mon}

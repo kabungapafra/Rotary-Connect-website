@@ -1,9 +1,11 @@
+import useReveal from "../useReveal";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import CtaBanner from "../components/CtaBanner";
 import { ROLE_GUIDES, PILLARS } from "../data/siteData";
 
 export default function HowToUseApp() {
+  useReveal();
   return (
     <div style={{ background: "#F2F5F9" }}>
       <div style={{ background: "#17458F", padding: "0 0 56px" }}>
@@ -25,7 +27,7 @@ export default function HowToUseApp() {
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))", gap: 20 }}>
             {ROLE_GUIDES.map((r) => (
-              <div key={r.role} style={{ borderRadius: 22, background: "#ffffff", padding: "clamp(20px, 3vw, 30px)" }}>
+              <div key={r.role} className="lift" style={{ borderRadius: 22, background: "#ffffff", padding: "clamp(20px, 3vw, 30px)" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
                   <span style={{ width: 40, height: 40, borderRadius: 999, background: "#F7A81B", color: "#101820", fontFamily: "'Plus Jakarta Sans',sans-serif", fontWeight: 800, fontSize: 12.5, display: "flex", alignItems: "center", justifyContent: "center", flex: "none" }}>
                     {r.tag}

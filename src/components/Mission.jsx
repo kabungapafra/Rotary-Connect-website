@@ -5,7 +5,7 @@ import presidentApp from "../assets/president-app.png";
 
 export default function Mission() {
   return (
-    <section id="mission" style={{ padding: "clamp(52px, 7vw, 88px) clamp(18px, 4vw, 44px) clamp(44px, 6vw, 72px)", maxWidth: 1440, margin: "0 auto" }}>
+    <section id="mission" className="reveal" style={{ padding: "clamp(52px, 7vw, 88px) clamp(18px, 4vw, 44px) clamp(44px, 6vw, 72px)", maxWidth: 1440, margin: "0 auto" }}>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 320px), 1fr))", gap: "clamp(28px, 4vw, 56px)", alignItems: "start" }}>
         <div style={{ borderRadius: 22, aspectRatio: "4/3", display: "flex", alignItems: "center", justifyContent: "center" }}>
           <img

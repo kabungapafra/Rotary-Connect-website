@@ -10,7 +10,7 @@ export default function NewsFaq() {
   const showNews = news !== null && news.length > 0;
 
   return (
-    <section id="news" style={{ padding: "clamp(52px, 7vw, 80px) clamp(18px, 4vw, 44px)", background: "#ffffff" }}>
+    <section id="news" className="reveal" style={{ padding: "clamp(52px, 7vw, 80px) clamp(18px, 4vw, 44px)", background: "#ffffff" }}>
       <div style={{ display: "grid", gridTemplateColumns: showNews ? "repeat(auto-fit, minmax(min(100%, 300px), 1fr))" : "1fr", gap: "clamp(32px, 4vw, 56px)", maxWidth: 1440, margin: "0 auto" }}>
         {showNews && (
         <div>
